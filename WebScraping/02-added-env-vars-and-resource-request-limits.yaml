@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-web-scraper
+spec:
+  selector:
+    matchLabels:
+      app: busybox-web-scraper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: busybox-web-scraper
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: 
+          - "/bin/sh"
+          - "-c"
+          - "echo received inputs: SCRAPING_URL : $SCRAPING_URL; \
+             echo received inputs: FILENAME : $FILENAME; \
+             wget -qO- $SCRAPING_URL --no-check-certificate > $FILENAME; \
+             sleep 600"
+          env:
+            - name: SCRAPING_URL
+              value: 'https://stackoverflow.com/'
+            - name: FILENAME
+              value: 'stackoverflow.html'
+          resources:
+            requests:
+              cpu: 2m
+              memory: 5Mi
+            limits:
+              cpu: 20m
+              memory: 20Mi

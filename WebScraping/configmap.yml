@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demoapp
+data:
+  FILENAME: 'jagran.htm'
+  SCRAPING_URL: 'https://www.jagran.com/'
+
+
+#appsettings.json: |-
+# This text is something I wish to mount on the container 
+# as it is  keeping it inside the container running inside pod.
+#  ================================
+# This is just a demo, but you can of course make smart use of this
+# by mounting the text configuration as file in your container.
+# saini vijay
+    

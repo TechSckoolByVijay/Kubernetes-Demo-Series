@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntudemocontainer
+spec:
+  selector:
+    matchLabels:
+      app: ubuntudemocontainer
+  template:
+    metadata:
+      labels:
+        app: ubuntudemocontainer
+    spec:
+      containers:
+      - name: ubuntudemocontainer
+        image: demo002.azurecr.io/ubuntudemocontainer:59
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name: log-dir
+            mountPath: /shared-drive
+      - name: busybox
+        image: busybox
+        command:
+        - sleep
+        - "3600"
+        imagePullPolicy: IfNotPresent
+      volumes:
+      - name:  log-dir
+        emptyDir:
+          sizeLimit: 500Mi

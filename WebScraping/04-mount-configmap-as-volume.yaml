@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-web-scraper
+spec:
+  selector:
+    matchLabels:
+      app: busybox-web-scraper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: busybox-web-scraper
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: 
+          - "/bin/sh"
+          - "-c"
+          - "echo received inputs: SCRAPING_URL : $SCRAPING_URL; \
+             echo received inputs: FILENAME : $FILENAME; \
+             while true; do wget -qO- $SCRAPING_URL --no-check-certificate > $FILENAME; sleep 60; done;"
+             
+          env:
+            - name: SCRAPING_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: SCRAPING_URL
+                  name: demoapp
+
+            - name: FILENAME
+              valueFrom:
+                configMapKeyRef:
+                  key: FILENAME
+                  name: demoapp
+
+          volumeMounts:
+            - name: config
+              mountPath: /tmp
+          
+          resources:
+            requests:
+              cpu: 2m
+              memory: 5Mi
+            limits:
+              cpu: 20m
+              memory: 20Mi
+      volumes:
+      - name: config
+        configMap:
+          name: demoapp
+          items:
+          - key: "appsettings.json"
+            path: "appsettings.json"

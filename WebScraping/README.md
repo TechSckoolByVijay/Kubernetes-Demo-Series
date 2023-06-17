@@ -1,5 +1,9 @@
 **Quick Walk through**
 
+### Access Full Course:
+Udemy:  https://www.udemy.com/course/kubernetes-on-weekends/
+Youtube: https://www.youtube.com/watch?v=TSdsIP22klE&list=PLgDNNHx_Y9lLO8criL0mS75N9Q-yHi6l9 
+
 ## Aim
 - To deploy a workload in kubernetes to perform web scrapping task of any website.
 - We shall use various Kubernetes components to

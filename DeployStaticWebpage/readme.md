@@ -17,22 +17,18 @@ az group create --name myResourceGroup --location eastus
 ## Installing Azure CLI
 To interact with Azure Container Registry and perform various tasks, we need to install the Azure CLI. Azure CLI is a command-line tool that allows us to manage Azure resources from our local machine. Follow the instructions in the link provided to install Azure CLI on your system.
 
-## Creating a Dockerfile (200 words)
-    A Dockerfile is a text file that contains instructions for Docker to build an image. It describes the base image, required dependencies, file copies, and commands needed to set up the container.
+## Creating a Dockerfile
+A Dockerfile is a text file that contains instructions for Docker to build an image. It describes the base image, required dependencies, file copies, and commands needed to set up the container.
 
-    To create a Docker image, we need to define a Dockerfile. Create a file named "Dockerfile" (without any file extension) in the same directory as your HTML file. Open the Dockerfile in a text editor and add the necessary instructions. In our case, we will use the Nginx base image and copy our HTML file into the appropriate location within the container.
-
-    Congratulations! You have successfully created a Dockerfile to run an HTML file on Nginx. By following these steps, you can package your website into a Docker container, enabling easy deployment and scalability. Thank you for watching, and happy containerization!"
-
-
-
+To create a Docker image, we need to define a Dockerfile. Create a file named "Dockerfile" (without any file extension) in the same directory as your HTML file. Open the Dockerfile in a text editor and add the necessary instructions. In our case, we will use the Nginx base image and copy our HTML file into the appropriate location within the container.
 
 ## Building and Pushing the Docker Image
 With the Dockerfile ready, we can now build our Docker image and push it to Azure Container Registry. We will use the az acr build command, which enables us to build and push the image directly to ACR. 
 Open a terminal or command prompt and follow the steps outlined in the lecture to log in to your Azure account, set the target Azure Container Registry, and execute the build command.
+    
     #### Queue a local context as a Linux build, tag it, and push it to the registry.
 
-    - ``` az acr build --image sample/hello-world:{{.Run.ID}} --registry MyRegistry . ```
+    - az acr build --image sample/hello-world:{{.Run.ID}} --registry MyRegistry .
 
     - ``` az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g myResourceGroup . ```
 

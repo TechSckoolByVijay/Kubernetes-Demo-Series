@@ -1,13 +1,12 @@
 
-# Lecture 1: 
-Title: Deploying Azure Container Registry (ACR), Building container image from the Dockerfile and push it to ACR
+# Lecture 1: Deploying Azure Container Registry & Building Docker Image
 
 In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
 
-## What is Azure Container Registry (ACR)? (100 words)
+## What is Azure Container Registry (ACR)?
 Azure Container Registry is a managed Docker registry service offered by Azure. It allows users to store, manage, and deploy Docker container images for their applications securely. ACR integrates seamlessly with other Azure services, making it an ideal choice for container image management in cloud-based environments.
 
-## Setting Up Azure Container Registry (150 words)
+## Setting Up Azure Container Registry
 Before we dive into creating a Docker image, let's set up our Azure Container Registry. If you don't have an Azure subscription, you can create a free account on the Azure portal. Once you have an account, follow the documentation provided in the link to create your own Azure Container Registry. This will serve as a centralized repository for our Docker images.
 
 ```
@@ -38,22 +37,24 @@ Let's go to the Azure portal and navigate to your Azure Container Registry. By s
 Congratulations! You have successfully learned how to create a Docker image of an HTML file, run it on Nginx, and store it in Azure Container Registry. This knowledge opens up a world of possibilities for deploying and managing containerized applications in the cloud. Thank you for watching, and happy containerization
 
 =======
-# Lecture 2
-Title: Deploying an HTML Website on Nginx with Kubernetes from Azure Container Registry (ACR)
+# Lecture 2 : Deploying an HTML Website on Nginx with Kubernetes from ACR
 
 Introduction:
 "Welcome to today's lecture! In this session, we will explore how to deploy an HTML website on Nginx using Kubernetes. We will leverage the power of Azure Container Registry (ACR) to securely store and pull our Docker image."
 
 
-Setting Up Secrets in Kubernetes (200 words)
+## Setting Up Secrets in Kubernetes
 
 To securely authenticate with Azure Container Registry, we need to create a secret in Kubernetes. Execute the following command to generate a secret with your ACR credentials:
 
+```
 kubectl create secret docker-registry <secret-name> --docker-server=<acr-login-server> --docker-username=<acr-username> --docker-password=<acr-password> --docker-email=<your-email>
 
 Replace <secret-name> with a meaningful name for your secret, <acr-login-server> with the login server URL of your ACR, <acr-username> and <acr-password> with your ACR login credentials, and <your-email> with your email address.
 
-Deploying the Application to Kubernetes (200 words)
+```
+
+## Deploying the Application to Kubernetes
 With our Docker image pushed to ACR and the secret created, we can deploy the application to Kubernetes. Create a Kubernetes deployment manifest file with the appropriate specifications, including the image name from ACR and the secret name. Apply the manifest using the following command:
 
 ```
@@ -83,17 +84,19 @@ spec:
 Apply the manifest using the following command:
 ``` kubectl apply -f <deployment-manifest.yaml> ```
 
+Congratulations on completing this lecture on deploying an HTML website on Nginx with Kubernetes! Throughout this session, we explored essential concepts related to Kubernetes deployments, services, and containerization. Let's recap what we have learned and discuss the benefits and takeaways from this lecture.
 
 
-Lecture3: Exposing the deployment with Service
 
-"Welcome to today's lecture! In this session, we will learn how to expose our Kubernetes deployment as a service, allowing external access to our HTML website running on Nginx."
 
-Understanding Kubernetes Services (150 words)
+# Lecture3: Exposing the deployment with Service
+Welcome to today's lecture! In this session, we will learn how to expose our Kubernetes deployment as a service, allowing external access to our HTML website running on Nginx.
+
+## Understanding Kubernetes Services 
 In Kubernetes, services provide a stable endpoint for accessing a set of pods. They enable communication between different components within a cluster and allow external traffic to reach our applications. By exposing our deployment as a service, we can easily access our HTML website from outside the cluster.
 
-Types of Service
-##### Deploying the Service
+## Types of Service
+## Deploying the Service
 With the service manifest ready, let's deploy it using the following command:
 ``` kubectl apply -f service.yaml ```
 
@@ -116,12 +119,8 @@ spec:
 
 ```
 
-"Congratulations! You have successfully exposed your Kubernetes deployment as a service, enabling external access to your HTML website on Nginx. Services are a crucial component in Kubernetes for networking and connectivity. Thank you for joining this lecture, and happy Kubernetes exploration!"
+Congratulations! You have successfully exposed your Kubernetes deployment as a service, enabling external access to your HTML website on Nginx. Services are a crucial component in Kubernetes for networking and connectivity. Thank you for joining this lecture, and happy Kubernetes exploration!
 
-
-
-
-Congratulations on completing this lecture on deploying an HTML website on Nginx with Kubernetes! Throughout this session, we explored essential concepts related to Kubernetes deployments, services, and containerization. Let's recap what we have learned and discuss the benefits and takeaways from this lecture.
 
 Summary of Learning:
 

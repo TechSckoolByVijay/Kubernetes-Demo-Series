@@ -1,3 +1,13 @@
+html
+dockerfile
+acr
+acr build -> repos
+k8s deploy
+k8s services
+replicas & rollout restart
+
+<20 seconds website play>
+sshhh.. no worries at all, you have nowhere to go to learn kubernetes when I am already doing the hard work to make k8s concepts easy for you. hello you awesome people, welcome to this another exciting demo. The dark webpage you are seeing right now is nothing but a website running in my kubernetes cluster, at the moment publically accessible, until I delete my cluster. All different steps to reach here are logged into this article. so you like to go through theory first quickly, this article is your friend. and then you can continue here in this lecture which is purely handson.
 
 "Welcome to today's lecture! In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx."
 

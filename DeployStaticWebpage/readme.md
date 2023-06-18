@@ -171,41 +171,33 @@ In conclusion, mastering the deployment of an HTML website on Nginx with Kuberne
 
 Congratulations on completing the lecture on deploying an HTML website on Nginx with Kubernetes! Now, let's put your knowledge to the test with an advanced assignment that will further strengthen your understanding of Kubernetes deployment and service concepts.
 
-Assignment Instructions:
+## Assignment Instructions:
+*Deployment:*
+- Create a Kubernetes deployment manifest for deploying a multi-container application consisting of an Nginx web server and a Redis cache.
+- Instead of storing the html file content inside the docker image, store it in k8s ConfigMap and use Volume - Mounts to directly mount the html file on the nginx container.
+- Configure the Nginx container to serve the index.html file as the website content.
+- Set the resource limits and requests appropriately for both containers.
+- Define the necessary environment variables for the Redis cache container.
+- Ensure that both containers are in the same pod and communicate with each other.
 
-Deployment:
+*Service:*
+- Create a Kubernetes service manifest to expose the Nginx web server as a LoadBalancer service.
+- Configure the service to route incoming traffic on port 80 to the Nginx container's port.
+- Apply the service manifest and verify that an external IP is assigned to the service.
 
-Create a Kubernetes deployment manifest for deploying a multi-container application consisting of an Nginx web server and a Redis cache.
-Configure the Nginx container to serve the index.html file as the website content.
-Set the resource limits and requests appropriately for both containers.
-Define the necessary environment variables for the Redis cache container.
-Ensure that both containers are in the same pod and communicate with each other.
-Service:
-
-Create a Kubernetes service manifest to expose the Nginx web server as a LoadBalancer service.
-Configure the service to route incoming traffic on port 80 to the Nginx container's port.
-Apply the service manifest and verify that an external IP is assigned to the service.
-Scaling and Updating:
-
-Use the appropriate Kubernetes commands to scale the deployment to have three replicas.
-Validate that all three replicas are running and serving the website content.
-Update the index.html file with new content without disrupting the service availability.
-Verify that the updated content is visible when accessing the website.
-Additional Tasks (Bonus):
-
-Enable rolling updates for the deployment to ensure zero-downtime updates.
-Explore different service types (ClusterIP, NodePort) and their use cases.
-Implement service discovery to allow the Nginx container to connect to the Redis cache using the service DNS.
-Submission Guidelines:
-
-Prepare a single YAML file containing the deployment and service manifests.
-Include any additional files or instructions required for the assignment.
-Provide a summary of the changes made and the reasoning behind your decisions.
-Submit your solution in a format specified by your instructor.
-Note: This assignment is designed to challenge you and reinforce your understanding of advanced Kubernetes concepts. Don't hesitate to consult the Kubernetes documentation, experiment, and seek help if needed. Good luck, and have fun exploring Kubernetes!
+*Scaling and Updating:*
+- Use the appropriate Kubernetes commands to scale the deployment to have three replicas.
+- Validate that all three replicas are running and serving the website content.
+- Update the index.html file with new content without disrupting the service availability.
+- Verify that the updated content is visible when accessing the website.
 
 
-give me solution of above assignment
+## *Assignment Notes:*
+  - This assignment is designed to challenge you and reinforce your understanding of advanced Kubernetes concepts. Don't hesitate to consult the Kubernetes documentation, experiment, and seek help if needed. Good luck, and have fun exploring Kubernetes!
+  - Prepare a single YAML file containing the deployment and service manifests.
+  - Include any additional files or instructions required for the assignment.
+  - Provide a summary of the changes made and the reasoning behind your decisions.
+  - Submit your solution in a format specified by your instructor.
 
 
 # Assignment Solution : 
@@ -280,6 +272,7 @@ data:
         <h1>Welcome to my website!</h1>
       </body>
     </html>
+
 ```
 Explanation:
 

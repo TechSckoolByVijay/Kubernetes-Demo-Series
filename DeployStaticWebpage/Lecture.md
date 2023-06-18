@@ -1,54 +1,44 @@
 
-# Lecture 1: 
-Title: Deploying Azure Container Registry (ACR), Building container image from the Dockerfile and push it to ACR
+"Welcome to today's lecture! In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx."
 
-In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
-
-## What is Azure Container Registry (ACR)? (100 words)
+What is Azure Container Registry (ACR)? (100 words)
 Azure Container Registry is a managed Docker registry service offered by Azure. It allows users to store, manage, and deploy Docker container images for their applications securely. ACR integrates seamlessly with other Azure services, making it an ideal choice for container image management in cloud-based environments.
 
-## Setting Up Azure Container Registry (150 words)
+Setting Up Azure Container Registry (150 words)
 Before we dive into creating a Docker image, let's set up our Azure Container Registry. If you don't have an Azure subscription, you can create a free account on the Azure portal. Once you have an account, follow the documentation provided in the link to create your own Azure Container Registry. This will serve as a centralized repository for our Docker images.
 
-```
-az group create --name myResourceGroup --location eastus
-```
-
-## Installing Azure CLI
+Installing Azure CLI (100 words)
 To interact with Azure Container Registry and perform various tasks, we need to install the Azure CLI. Azure CLI is a command-line tool that allows us to manage Azure resources from our local machine. Follow the instructions in the link provided to install Azure CLI on your system.
 
-## Creating a Dockerfile (200 words)
+Creating a Dockerfile (200 words)
     A Dockerfile is a text file that contains instructions for Docker to build an image. It describes the base image, required dependencies, file copies, and commands needed to set up the container.
 
     To create a Docker image, we need to define a Dockerfile. Create a file named "Dockerfile" (without any file extension) in the same directory as your HTML file. Open the Dockerfile in a text editor and add the necessary instructions. In our case, we will use the Nginx base image and copy our HTML file into the appropriate location within the container.
-
     Congratulations! You have successfully created a Dockerfile to run an HTML file on Nginx. By following these steps, you can package your website into a Docker container, enabling easy deployment and scalability. Thank you for watching, and happy containerization!"
 
+    Note: Adjust the word count and modify the lecture as needed to fit within the 1000-word limit for your YouTube channel. Remember to include detailed explanations and examples to help viewers understand the Dockerfile creation process.
 
 
+Building and Pushing the Docker Image (200 words)
+With the Dockerfile ready, we can now build our Docker image and push it to Azure Container Registry. We will use the az acr build command, which enables us to build and push the image directly to ACR. Open a terminal or command prompt and follow the steps outlined in the lecture to log in to your Azure account, set the target Azure Container Registry, and execute the build command.
+ac acr build docker
 
-## Building and Pushing the Docker Image
-With the Dockerfile ready, we can now build our Docker image and push it to Azure Container Registry. We will use the az acr build command, which enables us to build and push the image directly to ACR. 
-Open a terminal or command prompt and follow the steps outlined in the lecture to log in to your Azure account, set the target Azure Container Registry, and execute the build command.
-    #### Queue a local context as a Linux build, tag it, and push it to the registry.
-
-    - ``` az acr build --image sample/hello-world:{{.Run.ID}} --registry MyRegistry . ```
-
-    - ``` az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g myResourceGroup . ```
-
-## Verifying the Docker Image in Azure Container Registry
+Verifying the Docker Image in Azure Container Registry (150 words)
 Let's go to the Azure portal and navigate to your Azure Container Registry. By selecting the "Repositories" tab, we can confirm that our Docker image has been successfully pushed to ACR. This step ensures that the image is securely stored and can be accessed when needed.
 
 Congratulations! You have successfully learned how to create a Docker image of an HTML file, run it on Nginx, and store it in Azure Container Registry. This knowledge opens up a world of possibilities for deploying and managing containerized applications in the cloud. Thank you for watching, and happy containerization
 
 =======
-# Lecture 2
+
 Title: Deploying an HTML Website on Nginx with Kubernetes from Azure Container Registry (ACR)
 
 Introduction:
 "Welcome to today's lecture! In this session, we will explore how to deploy an HTML website on Nginx using Kubernetes. We will leverage the power of Azure Container Registry (ACR) to securely store and pull our Docker image."
 
 
+az acr login --name <acr-name>
+docker tag <local-image-name> <acr-login-server>/<acr-repository>:<tag>
+docker push <acr-login-server>/<acr-repository>:<tag>
 Setting Up Secrets in Kubernetes (200 words)
 
 To securely authenticate with Azure Container Registry, we need to create a secret in Kubernetes. Execute the following command to generate a secret with your ACR credentials:
@@ -60,65 +50,19 @@ Replace <secret-name> with a meaningful name for your secret, <acr-login-server>
 Deploying the Application to Kubernetes (200 words)
 With our Docker image pushed to ACR and the secret created, we can deploy the application to Kubernetes. Create a Kubernetes deployment manifest file with the appropriate specifications, including the image name from ACR and the secret name. Apply the manifest using the following command:
 
-```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: myorgprodacr.azurecr.io/nginx:v1
-          ports:
-            - containerPort: 80
-      imagePullSecrets:
-        - name:  acr-secret
-```
-
-Apply the manifest using the following command:
-``` kubectl apply -f <deployment-manifest.yaml> ```
+<<<<<<<<k8s deployment create apply>>>>>>>
 
 
 
-Lecture3: Exposing the deployment with Service
 
 "Welcome to today's lecture! In this session, we will learn how to expose our Kubernetes deployment as a service, allowing external access to our HTML website running on Nginx."
 
 Understanding Kubernetes Services (150 words)
 In Kubernetes, services provide a stable endpoint for accessing a set of pods. They enable communication between different components within a cluster and allow external traffic to reach our applications. By exposing our deployment as a service, we can easily access our HTML website from outside the cluster.
 
-Types of Service
-##### Deploying the Service
-With the service manifest ready, let's deploy it using the following command:
-``` kubectl apply -f service.yaml ```
-
+Deploying the Service
 Verifying the Service
-``` kubectl get service website-service ```
 
-```
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-deployment
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    app: nginx
-
-```
 
 "Congratulations! You have successfully exposed your Kubernetes deployment as a service, enabling external access to your HTML website on Nginx. Services are a crucial component in Kubernetes for networking and connectivity. Thank you for joining this lecture, and happy Kubernetes exploration!"
 

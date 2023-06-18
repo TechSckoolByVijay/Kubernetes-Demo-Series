@@ -21,6 +21,21 @@ A Dockerfile is a text file that contains instructions for Docker to build an im
 
 To create a Docker image, we need to define a Dockerfile. Create a file named "Dockerfile" (without any file extension) in the same directory as your HTML file. Open the Dockerfile in a text editor and add the necessary instructions. In our case, we will use the Nginx base image and copy our HTML file into the appropriate location within the container.
 
+```
+# Use the official Nginx base image
+FROM nginx:latest
+
+# Copy the index.html file to the container's web root directory
+COPY index.html /usr/share/nginx/html/index.html
+
+# Expose the default Nginx port
+EXPOSE 80
+
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]
+
+```
+
 ## Building and Pushing the Docker Image
 With the Dockerfile ready, we can now build our Docker image and push it to Azure Container Registry. We will use the az acr build command, which enables us to build and push the image directly to ACR. 
 Open a terminal or command prompt and follow the steps outlined in the lecture to log in to your Azure account, set the target Azure Container Registry, and execute the build command.
@@ -29,7 +44,7 @@ Open a terminal or command prompt and follow the steps outlined in the lecture t
 
     - az acr build --image sample/hello-world:{{.Run.ID}} --registry MyRegistry .
 
-    - ``` az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g myResourceGroup . ```
+    - az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g myResourceGroup .
 
 ## Verifying the Docker Image in Azure Container Registry
 Let's go to the Azure portal and navigate to your Azure Container Registry. By selecting the "Repositories" tab, we can confirm that our Docker image has been successfully pushed to ACR. This step ensures that the image is securely stored and can be accessed when needed.
@@ -50,9 +65,8 @@ To securely authenticate with Azure Container Registry, we need to create a secr
 ```
 kubectl create secret docker-registry <secret-name> --docker-server=<acr-login-server> --docker-username=<acr-username> --docker-password=<acr-password> --docker-email=<your-email>
 
-Replace <secret-name> with a meaningful name for your secret, <acr-login-server> with the login server URL of your ACR, <acr-username> and <acr-password> with your ACR login credentials, and <your-email> with your email address.
-
 ```
+Replace <secret-name> with a meaningful name for your secret, <acr-login-server> with the login server URL of your ACR, <acr-username> and <acr-password> with your ACR login credentials, and <your-email> with your email address.
 
 ## Deploying the Application to Kubernetes
 With our Docker image pushed to ACR and the secret created, we can deploy the application to Kubernetes. Create a Kubernetes deployment manifest file with the appropriate specifications, including the image name from ACR and the secret name. Apply the manifest using the following command:
@@ -85,8 +99,6 @@ Apply the manifest using the following command:
 ``` kubectl apply -f <deployment-manifest.yaml> ```
 
 Congratulations on completing this lecture on deploying an HTML website on Nginx with Kubernetes! Throughout this session, we explored essential concepts related to Kubernetes deployments, services, and containerization. Let's recap what we have learned and discuss the benefits and takeaways from this lecture.
-
-
 
 
 # Lecture3: Exposing the deployment with Service
@@ -122,7 +134,7 @@ spec:
 Congratulations! You have successfully exposed your Kubernetes deployment as a service, enabling external access to your HTML website on Nginx. Services are a crucial component in Kubernetes for networking and connectivity. Thank you for joining this lecture, and happy Kubernetes exploration!
 
 
-Summary of Learning:
+# Summary of Learning:
 
 We started by understanding Kubernetes and Azure Container Registry (ACR). Kubernetes provides container orchestration, simplifying application deployment and management, while ACR allows secure storage and retrieval of Docker images.
 We then created a Dockerfile to build a Docker image containing an HTML website and Nginx web server.
@@ -151,7 +163,7 @@ In conclusion, mastering the deployment of an HTML website on Nginx with Kuberne
 
 
 
-Assignment: Advanced Kubernetes Deployment and Service Revision
+# Assignment: Advanced Kubernetes Deployment and Service Revision
 
 Congratulations on completing the lecture on deploying an HTML website on Nginx with Kubernetes! Now, let's put your knowledge to the test with an advanced assignment that will further strengthen your understanding of Kubernetes deployment and service concepts.
 
@@ -192,14 +204,12 @@ Note: This assignment is designed to challenge you and reinforce your understand
 give me solution of above assignment
 
 
-	<<<<<< SOLUTION
+# Assignment Solution
 
 Certainly! Here's a possible solution for the advanced assignment on Kubernetes deployment and service revision:
 
-yaml
-Copy code
-# deployment.yaml
-
+## deployment.yaml
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -231,10 +241,11 @@ spec:
   - name: html-volume
     configMap:
       name: website-configmap
-yaml
-Copy code
-# service.yaml
+```
 
+
+## service.yaml
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -247,10 +258,10 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-yaml
-Copy code
-# configmap.yaml
+```
 
+## configmap.yaml
+```
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -265,6 +276,7 @@ data:
         <h1>Welcome to my website!</h1>
       </body>
     </html>
+```
 Explanation:
 
 The deployment.yaml file defines a Kubernetes Deployment. It specifies three replicas for high availability and uses a selector to identify the pods associated with this deployment. The deployment template includes two containers: Nginx and Redis. Nginx container serves as the web server, and Redis container acts as a cache. The Nginx container is configured to mount a volume, which will contain the index.html file served as the website content. The Redis container is set up with an environment variable for the Redis password.

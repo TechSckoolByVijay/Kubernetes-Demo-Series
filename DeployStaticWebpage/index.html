@@ -4,20 +4,39 @@
 <title>Dark Page</title>
 <style>
   body { text-align: center; padding: 150px; background: black;}
-  h1 { font-size: 70px; color:rgb(126, 62, 62); }
+  h1 { font-size: 70px; color:#333333; }
   body { font: 20px Helvetica, sans-serif; color: white; }
   article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  h1:hover { color: #333; text-decoration: none; }
+  h1:hover { color: #650000; text-decoration: none; }
 </style>
 </head>
 <body>
-  <audio src="/music/good_enough.mp3">
-    <p>If you are reading this, it is because your browser does not support the audio element.     </p>
-    </audio>
+
+
 <article>
     <center>
       <h1>Welcome to the Dark !!</h1>
     </center>
 </article>
+
+<audio id="background-audio" controls>
+  <source src="https://github.com/TechSckoolByVijay/Kubernetes-Demo-Series/raw/main/DeployStaticWebpage/music/horror2.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<style>
+  audio::-webkit-media-controls-panel {
+    background-color: rgb(39, 38, 38);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Play the audio when the user interacts with the audio element
+    document.getElementById('background-audio').play();
+  });
+</script>
+
+
 </body>
 </html>

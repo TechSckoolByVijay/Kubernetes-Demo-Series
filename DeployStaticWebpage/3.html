@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Background Voice Example</title>
+</head>
+<body>
+  <audio id="background-audio" controls>
+    <source src="https://github.com/TechSckoolByVijay/Kubernetes-Demo-Series/raw/main/DeployStaticWebpage/music/1500-ad-by-kris-32093.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Play the audio when the user interacts with the audio element
+      document.getElementById('background-audio').play();
+    });
+  </script>
+</body>
+</html>

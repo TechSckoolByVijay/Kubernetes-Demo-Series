@@ -201,8 +201,7 @@ Congratulations on completing the lecture on deploying an HTML website on Nginx 
 
 
 # Assignment Solution : 
-
-Certainly! Here's a possible solution for the advanced assignment on Kubernetes deployment and service revision:
+## Wait !!! Please see the solution, only if you have tried the assignment yourself.
 
 ## deployment.yaml
 ```
@@ -239,7 +238,6 @@ spec:
       name: website-configmap
 ```
 
-
 ## service.yaml
 ```
 apiVersion: v1
@@ -274,18 +272,19 @@ data:
     </html>
 
 ```
-Explanation:
 
-The deployment.yaml file defines a Kubernetes Deployment. It specifies three replicas for high availability and uses a selector to identify the pods associated with this deployment. The deployment template includes two containers: Nginx and Redis. Nginx container serves as the web server, and Redis container acts as a cache. The Nginx container is configured to mount a volume, which will contain the index.html file served as the website content. The Redis container is set up with an environment variable for the Redis password.
-The service.yaml file creates a LoadBalancer service named "website-service". It selects the pods based on the "app: website" label and exposes port 80. This allows external traffic to access the Nginx container.
-The configmap.yaml file defines a ConfigMap named "website-configmap". It contains the content of the index.html file used by the Nginx container. The index.html content can be customized as per your requirements.
-To deploy this solution:
+### Explanation:
 
-Apply the configmap.yaml file: kubectl apply -f configmap.yaml
-Apply the deployment.yaml file: kubectl apply -f deployment.yaml
-Apply the service.yaml file: kubectl apply -f service.yaml
-Verify the deployment and service: kubectl get deployment, kubectl get pods, kubectl get service
-You can access the website by using the external IP assigned to the service. Make sure to update the index.html content in the configmap.yaml file if desired.
+- The deployment.yaml file defines a Kubernetes Deployment. It specifies three replicas for high availability and uses a selector to identify the pods associated with this deployment. 
+- The deployment template includes two containers: Nginx and Redis. Nginx container serves as the web server, and Redis container acts as a cache. The Nginx container is configured to mount a volume, which will contain the index.html file served as the website content. The Redis container is set up with an environment variable for the Redis password.
+- The service.yaml file creates a LoadBalancer service named "website-service". It selects the pods based on the "app: website" label and exposes port 80. This allows external traffic to access the Nginx container.
+- The configmap.yaml file defines a ConfigMap named "website-configmap". It contains the content of the index.html file used by the Nginx container. The index.html content can be customized as per your requirements.
 
-Note: Adjust the solution as needed based on your specific requirements and preferences.
+#### *To deploy this solution, Apply manifest files: *
+``` 
+kubectl apply -f <filename> 
+```
 
+### Validate:
+- Verify the deployment and service: kubectl get deployment, kubectl get pods, kubectl get service
+- You can access the website by using the external IP assigned to the service. Make sure to update the index.html content in the configmap.yaml file if desired.

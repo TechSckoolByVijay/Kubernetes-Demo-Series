@@ -1,7 +1,7 @@
 
-# Lecture 1: Deploying Azure Container Registry & Building Docker Image
+# Lecture 1 : Deploying Azure Container Registry & Building Docker Image
 
-In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
+Welcome! In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
 
 ## What is Azure Container Registry (ACR)?
 Azure Container Registry is a managed Docker registry service offered by Azure. It allows users to store, manage, and deploy Docker container images for their applications securely. ACR integrates seamlessly with other Azure services, making it an ideal choice for container image management in cloud-based environments.
@@ -51,12 +51,10 @@ Let's go to the Azure portal and navigate to your Azure Container Registry. By s
 
 Congratulations! You have successfully learned how to create a Docker image of an HTML file, run it on Nginx, and store it in Azure Container Registry. This knowledge opens up a world of possibilities for deploying and managing containerized applications in the cloud. Thank you for watching, and happy containerization
 
-=======
+
 # Lecture 2 : Deploying an HTML Website on Nginx with Kubernetes from ACR
 
-Introduction:
-"Welcome to today's lecture! In this session, we will explore how to deploy an HTML website on Nginx using Kubernetes. We will leverage the power of Azure Container Registry (ACR) to securely store and pull our Docker image."
-
+"Welcome! In this session, we will explore how to deploy an HTML website on Nginx using Kubernetes. We will leverage the power of Azure Container Registry (ACR) to securely store and pull our Docker image."
 
 ## Setting Up Secrets in Kubernetes
 
@@ -69,7 +67,9 @@ kubectl create secret docker-registry <secret-name> --docker-server=<acr-login-s
 Replace <secret-name> with a meaningful name for your secret, <acr-login-server> with the login server URL of your ACR, <acr-username> and <acr-password> with your ACR login credentials, and <your-email> with your email address.
 
 ## Deploying the Application to Kubernetes
-With our Docker image pushed to ACR and the secret created, we can deploy the application to Kubernetes. Create a Kubernetes deployment manifest file with the appropriate specifications, including the image name from ACR and the secret name. Apply the manifest using the following command:
+With our Docker image pushed to ACR and the secret created, we can deploy the application to Kubernetes. 
+
+Create a Kubernetes deployment manifest file with the appropriate specifications, including the image name from ACR and the secret name.
 
 ```
 apiVersion: apps/v1
@@ -98,10 +98,14 @@ spec:
 Apply the manifest using the following command:
 ``` kubectl apply -f <deployment-manifest.yaml> ```
 
-Congratulations on completing this lecture on deploying an HTML website on Nginx with Kubernetes! Throughout this session, we explored essential concepts related to Kubernetes deployments, services, and containerization. Let's recap what we have learned and discuss the benefits and takeaways from this lecture.
+
+Validate the deployment using the following command:
+``` kubectl get deploy ```
+
+Congratulations on completing this lecture on deploying an HTML website on Nginx with Kubernetes! Throughout this session, we explored essential concepts related to Kubernetes deployments containerization. 
 
 
-# Lecture3: Exposing the deployment with Service
+# Lecture 3 : Exposing the deployment with Service
 Welcome to today's lecture! In this session, we will learn how to expose our Kubernetes deployment as a service, allowing external access to our HTML website running on Nginx.
 
 ## Understanding Kubernetes Services 
@@ -134,7 +138,7 @@ spec:
 Congratulations! You have successfully exposed your Kubernetes deployment as a service, enabling external access to your HTML website on Nginx. Services are a crucial component in Kubernetes for networking and connectivity. Thank you for joining this lecture, and happy Kubernetes exploration!
 
 
-# Summary of Learning:
+# Summary of Learning :
 
 We started by understanding Kubernetes and Azure Container Registry (ACR). Kubernetes provides container orchestration, simplifying application deployment and management, while ACR allows secure storage and retrieval of Docker images.
 We then created a Dockerfile to build a Docker image containing an HTML website and Nginx web server.
@@ -163,7 +167,7 @@ In conclusion, mastering the deployment of an HTML website on Nginx with Kuberne
 
 
 
-# Assignment: Advanced Kubernetes Deployment and Service Revision
+# Assignment : Advanced Kubernetes Deployment and Service Revision
 
 Congratulations on completing the lecture on deploying an HTML website on Nginx with Kubernetes! Now, let's put your knowledge to the test with an advanced assignment that will further strengthen your understanding of Kubernetes deployment and service concepts.
 
@@ -204,7 +208,7 @@ Note: This assignment is designed to challenge you and reinforce your understand
 give me solution of above assignment
 
 
-# Assignment Solution
+# Assignment Solution : 
 
 Certainly! Here's a possible solution for the advanced assignment on Kubernetes deployment and service revision:
 

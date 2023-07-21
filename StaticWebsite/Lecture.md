@@ -1,4 +1,16 @@
+Sequence:
+html
+dockerfile
+acr
+acr build -> repos
+k8s deploy
+k8s services
+replicas & rollout restart
 
+<20 seconds website play>
+sshhh...Hey, I completely understand your fear, but remember, there's no need to worry. "You are safe, and I'm here with you."  no worries at all, you have nowhere to go to learn kubernetes when I am already doing the hard work to make k8s concepts easy for you. hello you awesome people, welcome to this another exciting demo. The dark webpage you are seeing right now is nothing but a website running in my kubernetes cluster, at the moment publically accessible, until I delete my cluster. All different steps to reach here are logged into this article. so if you like to go through theory first quickly, this article is your friend. and then you can continue here in this lecture which is purely handson.
+
+<<<display prerequistes slide>>>
 # Lecture 1 : Deploying Azure Container Registry & Building Docker Image
 
 Welcome! In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
@@ -9,9 +21,6 @@ Azure Container Registry is a managed Docker registry service offered by Azure. 
 ## Setting Up Azure Container Registry
 Before we dive into creating a Docker image, let's set up our Azure Container Registry. If you don't have an Azure subscription, you can create a free account on the Azure portal. Once you have an account, follow the documentation provided in the link to create your own Azure Container Registry. This will serve as a centralized repository for our Docker images.
 
-```
-az group create --name myResourceGroup --location eastus
-```
 
 ## Installing Azure CLI
 To interact with Azure Container Registry and perform various tasks, we need to install the Azure CLI. Azure CLI is a command-line tool that allows us to manage Azure resources from our local machine. Follow the instructions in the link provided to install Azure CLI on your system.
@@ -21,20 +30,7 @@ A Dockerfile is a text file that contains instructions for Docker to build an im
 
 To create a Docker image, we need to define a Dockerfile. Create a file named "Dockerfile" (without any file extension) in the same directory as your HTML file. Open the Dockerfile in a text editor and add the necessary instructions. In our case, we will use the Nginx base image and copy our HTML file into the appropriate location within the container.
 
-```
-# Use the official Nginx base image
-FROM nginx:latest
-
-# Copy the index.html file to the container's web root directory
-COPY index.html /usr/share/nginx/html/index.html
-
-# Expose the default Nginx port
-EXPOSE 80
-
-# Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
-
-```
+<dockerfile overview>>>>>>
 
 ## Building and Pushing the Docker Image
 With the Dockerfile ready, we can now build our Docker image and push it to Azure Container Registry. We will use the az acr build command, which enables us to build and push the image directly to ACR. 
@@ -44,7 +40,7 @@ Open a terminal or command prompt and follow the steps outlined in the lecture t
 
     - az acr build --image sample/hello-world:{{.Run.ID}} --registry MyRegistry .
 
-    - az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g myResourceGroup .
+    - az acr build --image myorgprodacr.azurecr.io/nginx:v1 --registry myorgprodacr -g test .
 
 ## Verifying the Docker Image in Azure Container Registry
 Let's go to the Azure portal and navigate to your Azure Container Registry. By selecting the "Repositories" tab, we can confirm that our Docker image has been successfully pushed to ACR. This step ensures that the image is securely stored and can be accessed when needed.

@@ -1,6 +1,6 @@
 # Title: Deploying a Static Webpage on Nginx Container to AKS
 
-[Slide Background Image: Image of a cloud-based infrastructure with containers]
+![alt](https://raw.githubusercontent.com/TechSckoolByVijay/Kubernetes-Demo-Series/main/StaticWebsite/includes/architecture.jpg)
 
 ## Objective
 

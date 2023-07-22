@@ -1,3 +1,62 @@
+# Title: Deploying a Static Webpage on Nginx Container to AKS
+
+[Slide Background Image: Image of a cloud-based infrastructure with containers]
+
+## Objective
+
+## Deploy a static webpage using Nginx on Azure Kubernetes Service (AKS).
+- Showcase the process of containerizing the static webpage and deploying it to AKS for scalable and reliable hosting.
+
+## Tools and Technologies
+
+- Nginx: Web server and reverse proxy for serving the static webpage.
+- Docker: Containerization platform for packaging the static webpage into a Docker container.
+- Kubernetes: Container orchestration platform for managing containerized applications.
+- Azure Kubernetes Service (AKS): Managed Kubernetes service by Microsoft Azure.
+
+## Prerequisites
+
+- Azure account: Sign up for an Azure account (https://azure.com) if you don't have one.
+- Docker Desktop: Install Docker Desktop on your local machine for container development.
+- AKS Cluster: Create an AKS cluster on Azure using the Azure portal or Azure CLI.
+
+## Steps to Deploy
+- Step 1: Build Docker Image
+
+Create a Dockerfile for the Nginx container with the static webpage content.
+Use Docker CLI to build the Docker image locally.
+
+- Step 2: Push Docker Image
+
+Tag the built Docker image with an Azure Container Registry (ACR) repository.
+Push the Docker image to the ACR to make it available to AKS.
+
+- Step 3: Deploy to AKS
+
+Create a Kubernetes Deployment manifest to specify the Nginx container and its settings.
+Deploy the Kubernetes Deployment to AKS using kubectl.
+
+- Step 4: Expose the Service
+
+Expose the Nginx Deployment as a Kubernetes Service to make it accessible externally.
+Use an AKS Load Balancer or an Ingress Controller for external access.
+
+## Demonstrations
+- Show the process of building the Docker image with the static webpage.
+- Demonstrate how to deploy the Docker image to AKS and verify its successful deployment.
+- Access the static webpage through the external endpoint provided by AKS.
+
+## Benefits
+- Scalability: AKS automatically scales the Nginx containers based on demand.
+- High Availability: AKS ensures that the application is available even if nodes fail.
+- Containerization: Docker allows for consistent deployment across different environments.
+
+## Conclusion
+- Deploying a static webpage on Nginx to AKS offers a scalable and reliable hosting solution.
+- Containerization simplifies deployment and management of the application.
+- AKS provides a managed Kubernetes environment for seamless operations.
+
+
 
 # Lecture 1 : Deploying Azure Container Registry & Building Docker Image
 

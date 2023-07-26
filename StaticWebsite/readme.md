@@ -17,22 +17,22 @@
 - AKS Cluster: Create an AKS cluster on Azure using the Azure portal or Azure CLI.
 
 ## Steps to Deploy
-- *Step 1: Build Docker Image*
+- **Step 1: Build Docker Image**
 
 Create a Dockerfile for the Nginx container with the static webpage content.
 Use Docker CLI to build the Docker image locally.
 
-- *Step 2: Push Docker Image*
+- **Step 2: Push Docker Image**
 
 Tag the built Docker image with an Azure Container Registry (ACR) repository.
 Push the Docker image to the ACR to make it available to AKS.
 
-- *Step 3: Deploy to AKS*
+- **Step 3: Deploy to AKS**
 
 Create a Kubernetes Deployment manifest to specify the Nginx container and its settings.
 Deploy the Kubernetes Deployment to AKS using kubectl.
 
-- *Step 4: Expose the Service*
+- **Step 4: Expose the Service**
 
 Expose the Nginx Deployment as a Kubernetes Service to make it accessible externally.
 Use an AKS Load Balancer or an Ingress Controller for external access.

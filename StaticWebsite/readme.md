@@ -1,42 +1,38 @@
-# Title: Deploying a Static Webpage on Nginx Container to AKS
+# Deploying a Static Webpage on Nginx Container to AKS
 
 ![alt](https://raw.githubusercontent.com/TechSckoolByVijay/Kubernetes-Demo-Series/main/StaticWebsite/includes/architecture.jpg)
 
-## Objective
-
-## Deploy a static webpage using Nginx on Azure Kubernetes Service (AKS).
+### Objective
 - Showcase the process of containerizing the static webpage and deploying it to AKS for scalable and reliable hosting.
 
 ## Tools and Technologies
-
 - Nginx: Web server and reverse proxy for serving the static webpage.
 - Docker: Containerization platform for packaging the static webpage into a Docker container.
 - Kubernetes: Container orchestration platform for managing containerized applications.
 - Azure Kubernetes Service (AKS): Managed Kubernetes service by Microsoft Azure.
 
 ## Prerequisites
-
 - Azure account: Sign up for an Azure account (https://azure.com) if you don't have one.
 - Docker Desktop: Install Docker Desktop on your local machine for container development.
 - AKS Cluster: Create an AKS cluster on Azure using the Azure portal or Azure CLI.
 
 ## Steps to Deploy
-- Step 1: Build Docker Image
+- *Step 1: Build Docker Image*
 
 Create a Dockerfile for the Nginx container with the static webpage content.
 Use Docker CLI to build the Docker image locally.
 
-- Step 2: Push Docker Image
+- *Step 2: Push Docker Image*
 
 Tag the built Docker image with an Azure Container Registry (ACR) repository.
 Push the Docker image to the ACR to make it available to AKS.
 
-- Step 3: Deploy to AKS
+- *Step 3: Deploy to AKS*
 
 Create a Kubernetes Deployment manifest to specify the Nginx container and its settings.
 Deploy the Kubernetes Deployment to AKS using kubectl.
 
-- Step 4: Expose the Service
+- *Step 4: Expose the Service*
 
 Expose the Nginx Deployment as a Kubernetes Service to make it accessible externally.
 Use an AKS Load Balancer or an Ingress Controller for external access.

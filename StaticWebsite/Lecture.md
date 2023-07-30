@@ -8,14 +8,18 @@ k8s services
 replicas & rollout restart
 
 <20 seconds website play>
-sshhh...Hey, I completely understand your fear, but remember, there's no need to worry. "You are safe, and I'm here with you."  no worries at all, you have nowhere to go to learn kubernetes when I am already doing the hard work to make k8s concepts easy for you. hello you awesome people, welcome to this another exciting demo. The dark webpage you are seeing right now is nothing but a website running in my kubernetes cluster, at the moment publically accessible, until I delete my cluster. All different steps to reach here are logged into this article. so if you like to go through theory first quickly, this article is your friend. and then you can continue here in this lecture which is purely handson.
+sshhh...Hey, I completely understand your fear, but remember, there's no need to worry. "You are safe, and I'm here with you."  you have no need to go to the dark, learn kubernetes when I am already doing the hard work to make k8s concepts easy for you. hello you awesome people, welcome to this another exciting demo. The dark webpage you are seeing right now is nothing but a website running in my kubernetes cluster, at the moment publically accessible, until I delete my cluster. All different steps to reach here are logged into this article. so if you like to go through theory first quickly, this article is your friend. and then you can continue here in this lecture which is purely handson.
 
 <<<display prerequistes slide>>>
 # Lecture 1 : Deploying Azure Container Registry & Building Docker Image
 
+??Envt creation??
+
 Welcome! In this session, we will explore how to use Azure Container Registry (ACR) to create a Docker image of an HTML file and run it on Nginx.
 
 ## What is Azure Container Registry (ACR)?
+A container repository is storage for your containerized application images. These days, most image repositories focus on the 'OCI' format, based on the container format Docker popularized and opened up to everyone. In fact, 'OCI images' and 'Docker images' are often used interchangeably in the marketing of registry providers. dockerhub, google cr, acr
+
 Azure Container Registry is a managed Docker registry service offered by Azure. It allows users to store, manage, and deploy Docker container images for their applications securely. ACR integrates seamlessly with other Azure services, making it an ideal choice for container image management in cloud-based environments.
 
 ## Setting Up Azure Container Registry

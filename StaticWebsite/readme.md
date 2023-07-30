@@ -12,9 +12,12 @@
 - Azure Kubernetes Service (AKS): Managed Kubernetes service by Microsoft Azure.
 
 ## Prerequisites
-- Azure account: Sign up for an Azure account (https://azure.com) if you don't have one.
-- Docker Desktop: Install Docker Desktop on your local machine for container development.
-- AKS Cluster: Create an AKS cluster on Azure using the Azure portal or Azure CLI.
+- Kubernetes Cluster
+- Kubectl
+- AZ CLI
+- VS Code + Kubernetes Extension
+- Azure Subscription
+
 
 ## Steps to Deploy
 - **Step 1: Build Docker Image**

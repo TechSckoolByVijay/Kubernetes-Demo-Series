@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -13,13 +12,16 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx
-          image: myorgprodacr.azurecr.io/nginx:v1
-          ports:
-            - containerPort: 80
+      - name: nginx
+        image: demoprodacr.azurecr.io/nginx:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
       imagePullSecrets:
-        - name:  acr-secret
-
+        - name: acr-secret
 
 ---
 
@@ -28,10 +30,11 @@ kind: Service
 metadata:
   name: nginx-deployment
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
     app: nginx
+  type: LoadBalancer
+

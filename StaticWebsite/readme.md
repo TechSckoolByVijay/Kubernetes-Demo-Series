@@ -170,6 +170,33 @@ Welcome to today's lecture! In this session, we will learn how to expose our Kub
 In Kubernetes, services provide a stable endpoint for accessing a set of pods. They enable communication between different components within a cluster and allow external traffic to reach our applications. By exposing our deployment as a service, we can easily access our HTML website from outside the cluster.
 
 ## Types of Service
+### ClusterIP
+`Definition:` ClusterIP is the default service type in Kubernetes. It exposes the service on an internal cluster IP address that is reachable only from within the cluster. It enables communication between different components within the cluster.
+
+`Use Case:` Use ClusterIP to provide backend services that should be accessible only from within the cluster, such as databases or internal APIs.
+
+### NodePort
+
+`Definition:` NodePort exposes the service on a static port on each node's IP address. It allows external access to the service by forwarding traffic from the specified port on the node to the cluster IP.
+
+`Use Case:` Use NodePort when you need to access the service from outside the cluster, but you don't want to use a LoadBalancer. It's suitable for development or testing environments.
+
+
+### LoadBalancer
+
+`Definition:` LoadBalancer service exposes the service using a cloud provider's load balancer. It automatically provisions a load balancer and assigns an external IP address to the service for external access.
+
+`Use Case:` Use LoadBalancer in production environments when you need external clients to access your service with high availability and reliability.
+
+### ExternalName
+
+`Definition:` ExternalName maps a Kubernetes service to an external DNS name. It does not provide load balancing or proxying, acting as a simple DNS-based redirect.
+
+`Use Case:` Use ExternalName when you need to connect to services outside the Kubernetes cluster by using DNS name resolution, for example, to point to external databases or APIs.
+
+
+
+
 ## Deploying the Service
 With the service manifest ready, let's deploy it using the following command:
 ``` kubectl apply -f service.yaml ```
@@ -209,12 +236,10 @@ Congratulations on completing the lecture on deploying an HTML website on Nginx 
 
 ## Assignment Instructions:
 *Deployment:*
-- Create a Kubernetes deployment manifest for deploying a multi-container application consisting of an Nginx web server and a Redis cache.
+- Create a Kubernetes deployment manifest for deploying a multi-container application consisting of an Nginx web server.
 - Instead of storing the html file content inside the docker image, store it in k8s ConfigMap and use Volume - Mounts to directly mount the html file on the nginx container.
 - Configure the Nginx container to serve the index.html file as the website content.
 - Set the resource limits and requests appropriately for both containers.
-- Define the necessary environment variables for the Redis cache container.
-- Ensure that both containers are in the same pod and communicate with each other.
 
 *Service:*
 - Create a Kubernetes service manifest to expose the Nginx web server as a LoadBalancer service.
@@ -233,11 +258,10 @@ Congratulations on completing the lecture on deploying an HTML website on Nginx 
   - Prepare a single YAML file containing the deployment and service manifests.
   - Include any additional files or instructions required for the assignment.
   - Provide a summary of the changes made and the reasoning behind your decisions.
-  - Submit your solution in a format specified by your instructor.
 
 
-# Assignment Solution : 
-## Wait !!! Please see the solution, only if you have tried the assignment yourself.
+## Assignment Solution : 
+# Wait !!! Please see the solution, only if you have tried the assignment yourself.
 
 ## deployment.yaml
 ```
@@ -263,11 +287,6 @@ spec:
         volumeMounts:
         - name: html-volume
           mountPath: /usr/share/nginx/html
-      - name: redis
-        image: redis:latest
-        env:
-        - name: REDIS_PASSWORD
-          value: mypassword
   volumes:
   - name: html-volume
     configMap:
